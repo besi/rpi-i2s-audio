@@ -1,17 +1,17 @@
 /*
  * =====================================================================================
  *
- *       Filename:  test.c
+ *       Filename:  my_loader.c
  *
  *    Description:  
  *
- *        Version:  1.0
+ *        Version:  1.1
  *        Created:  06/02/16 16:46:13
  *       Revision:  none
  *       Compiler:  gcc
  *
- *         Author:  YOUR NAME (), 
- *   Organization:  
+ *         Author:  Beat Besmer (), 
+ *   Organization:  Besmer Labs
  *
  * =====================================================================================
  */
@@ -37,13 +37,13 @@
 
 void device_release_callback(struct device *dev) { /*  do nothing */ };
 static struct asoc_simple_card_info snd_rpi_simple_card_info = {
-.card = "snd_rpi_simple_card", // -> snd_soc_card.name
+.card = "raspi_sound", // -> snd_soc_card.name
 .name = "simple-card_codec_link", // -> snd_soc_dai_link.name
 .codec = "snd-soc-dummy", // "dmic-codec", // -> snd_soc_dai_link.codec_name
-.platform = "3f203000.i2s",
+.platform = "20203000.i2s",
 .daifmt = SND_SOC_DAIFMT_I2S | SND_SOC_DAIFMT_NB_NF | SND_SOC_DAIFMT_CBS_CFS,
 .cpu_dai = {
-.name = "3f203000.i2s", // -> snd_soc_dai_link.cpu_dai_name
+.name = "20203000.i2s", // -> snd_soc_dai_link.cpu_dai_name
 .sysclk = 0 },
 .codec_dai = {
 .name = "snd-soc-dummy-dai", //"dmic-codec", // -> snd_soc_dai_link.codec_dai_name
@@ -69,7 +69,7 @@ pr_alert("request module load '%s': %d\n",dmaengine, ret);
 ret = platform_device_register(&snd_rpi_simple_card_device);
 pr_alert("register platform device '%s': %d\n",snd_rpi_simple_card_device.name, ret);
 
-pr_alert("Hello World :)\n");
+pr_alert("Setting up RaspiSound\n");
 return 0;
 }
 
